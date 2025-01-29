@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 0;
     public TextMeshProUGUI countText;
     public  GameObject winTextObject;
+    public AudioSource source;
+    public AudioClip clip;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -64,9 +66,10 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag(("Enemy")))
         {
+            source.PlayOneShot(clip);
             Destroy(gameObject);
             winTextObject.gameObject.SetActive(true);
-            winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+            winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose! Press R to Restart!";
         }
     }
 }
